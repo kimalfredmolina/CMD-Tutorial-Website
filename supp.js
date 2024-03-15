@@ -3,7 +3,7 @@ const sendChatBtn = document.querySelector(".chat-input span");
 const chatbox = document.querySelector(".chatbox");
 
 let userMessage;
-const API_KEY = "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";
+const API_KEY = "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";
 
 const createChatLi = (message, className) =>{
     const chatLi = document.createElement("li");
