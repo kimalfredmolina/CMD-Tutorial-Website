@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Prompt</title>
+    <link rel="icon" type="image/png" href="pics/cmd.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+
+    <a href="javascript:history.back()" id="floating-home-icon" class="floating-icon">
+        <span class="material-icons-outlined">home</span>
+        <span class="text">Main Page</span>
+    </a>
+    
+<style>
+body {
+    background-color: #161b33; 
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.terminal {
+    background-color: #101820;
+    color: rgb(219, 219, 219);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 20px;
+    padding: 20px;
+    width: 1500px;
+    height: 700px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    overflow: auto;
+}
+
+.prompt {
+    display: block;
+    margin-bottom: 25px;
+}
+
+.input-line {
+    display: flex;
+    align-items: baseline;
+}
+
+.input-line:before {
+    content: "C:\\Users\\Test\>";
+    color: rgb(180, 208, 228);
+}
+
+.input-line input {
+    background: none;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 20px;
+    padding: 5px 0; 
+    outline: none;
+    width: 100%;
+    margin-left: 5px;
+}
+
+.input-line input:focus {
+    outline: none;
+}
+
+.output {
+    color: rgb(255, 255, 255);
+}
+
+.floating-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #910606;
+    color: white;
+    border-radius: 50%;
+    width: 80px; 
+    height: 80px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100; 
+    text-decoration: none; 
+}
+
+.floating-icon .material-icons-outlined {
+    font-size: 25px;
+}
+
+.floating-icon .text {
+    display: none; 
+}
+
+.floating-icon:hover .text {
+    display: inline;
+    margin-left: 8px; 
+}
+
+</style>
+</head>
+<body>
+<div class="terminal">
+    <div class="prompt">Microsoft Windows [Version 10.0.19045.4046]</div>
+    <div class="prompt">(c) 2024 Microsoft Corporation. All rights reserved.</div>
+    <div class="input-line">
+        <input type="text" autofocus>
+    </div>
+    <div class="output"></div>
+</div>
+
+<script>
+const inputField = document.querySelector('.input-line input');
+const outputField = document.querySelector('.output');
+const helpText = document.querySelector('.help-text');
+
+inputField.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+        const command = inputField.value.trim();
+        inputField.value = '';
+        outputField.innerHTML += `<div>${command}</div>`;
+
+        if (command.toLowerCase() === "help") {
+            outputField.innerHTML += `<div>For more information on a specific command, type HELP command-name
+                                        <br>- ASSOC--Displays or modifies file extension associations.
+                                        <br>- ATTRIB--Displays or changes file attributes.
+                                        <br>- BREAK--Sets or clears extended CTRL+C checking.
+                                        <br>- CALL--Calls one batch program from another.
+                                        <br>- CD--Displays the name of or changes the current directory.
+                                        <br>- CHDIR--Displays the name of or changes the current directory.
+                                        <br>- CHKDSK--Checks a disk and displays a status report.
+                                        <br>- CLS--Clears the screen.
+                                        <br>- CMD--Starts a new instance of the Windows command interpreter.
+                                        <br>- COPY--Copies one or more files to another location.
+                                        <br>- DATE--Displays or sets the date.
+                                        <br>- DEL--Deletes one or more files.
+                                        <br>- DIR--Displays a list of files and subdirectories in a directory.
+                                        <br>- ECHO--Displays messages, or turns command echoing on or off.
+                                        <br>- ERASE--Deletes one or more files.
+                                        <br>- EXIT--Quits the CMD.EXE program (command interpreter).
+                                        <br>- FIND--Searches for a text string in a file or files.
+                                        <br>- MD--Creates a directory.
+                                        <br>- MOVE--Moves one or more files from one directory to another.
+                                        <br>- OPENFILES--Displays files opened by remote users for a file share.
+                                        <br>- PATH--Displays or sets a search path for executable files.
+                                        <br>- PRINT--Prints a text file.
+                                        <br>- PROMPT--Changes the Windows command prompt.
+                                        <br>- RMDIR--Removes a directory.
+                                        <br>- SET--Displays, sets, or removes Windows environment variables.
+                                        <br>- SHUTDOWN--Allows proper local or remote shutdown of machine.
+                                        <br>- SYSTEMINFO--Displays machine specific properties and configuration.
+                                        <br>- TASKLIST--Displays all currently running tasks including services.
+                                        <br>- TITLE--Sets the window title for a CMD.EXE session.
+                                        <br>- TYPE--Displays the contents of a text file.
+                                        <br>- VERIFY--Tells Windows whether to verify that your files are writtencorrectly to a disk.
+                                        <br>- VOL--Displays a disk volume label and serial number.
+                                        <br>- XCOPY--Copies files and directory trees.</div>`;
+        } else if (command.toLowerCase() === "cls") {
+            outputField.innerHTML = '';
+        } else if (command.toLowerCase() === "attrib") {
+            outputField.innerHTML = `<div>A                   C:\\Users\\Test\\.appletviewer
+                                    <br> A                    C:\\Users\\Test\\.gitconfig
+                                    <br> A                    C:\\Users\\Test\\.node_repl_history
+                                    <br> A                    C:\\Users\\Test\\node
+                                    <br> A   H   I            C:\\Users\\Test\\NTUSER.DAT
+                                    <br> A  SH                C:\\Users\\Test\\ntuser.dat.LOG1
+                                    <br> A  SH                C:\\Users\\Test\ntuser.dat.LOG2
+                                    <br> A  SH                C:\\Users\\Test\\NTUSER.DAT{2bc4b2f1-9331-11ed-a976-d85ed3926b9c}.TM.blf
+                                    <br> A  SH                C:\\Users\\Test\\NTUSER.DAT{2bc4b2f1-9331-11ed-a976-d85ed3926b9c}.TMContainer00000000000000000001.regtrans-ms
+                                    <br> A  SH                C:\\Users\\Test\\NTUSER.DAT{2bc4b2f1-9331-11ed-a976-d85ed3926b9c}.TMContainer00000000000000000002.regtrans-ms
+                                    <br> SH                   C:\\Users\\Test\\ntuser.ini</div>`;
+        } else if (command.toLowerCase() === "cd") {
+            outputField.innerHTML = `<div>Python is the path to the directory you want to navigate to.
+                                    When you execute this command, the current working directory changes to C:\\Programs\\Python.</div>`; 
+        } else if (command.toLowerCase() === "chkdsk") {
+            outputField.innerHTML = `<div<CHKDSK [volume[[path]filename]] [/F] [/V] [/R] [/X] [/I] [/C] [/L[:size]] [/B] [/scan] [/spotfix]
+                                    <br>
+                                    <br> volume         Specifies the drive letter (followed by a colon),
+                                    <br>                mount point, or volume name.
+                                    <br>
+                                    <br> filename       FAT/FAT32 only: Specifies the files to check for fragmentation.
+                                    <br>
+                                    <br> /F             Fixes errors on the disk.
+                                    <br>
+                                    <br> /V             On FAT/FAT32: Displays the full path and name of every file
+                                    <br>                on the disk.
+                                    <br>                On NTFS: Displays cleanup messages if any.
+                                    <br>
+                                    <br>/R              Locates bad sectors and recovers readable information
+                                    <br>                (implies /F).
+                                    <br>
+                                    <br>/L:size         NTFS only: Changes the log file size to the specified number
+                                    <br>                of kilobytes. If size is not specified, displays current
+                                    <br>                size.</div>`;
+
+        } else if (command.toLowerCase() === "cmd") {
+            outputField.innerHTML = `<div>CMD [/A | /U] [/Q] [/D] [/E:ON | /E:OFF] [/F:ON | /F:OFF] [/V:ON | /V:OFF]
+                                    <br>[[/S] [/C | /K] string]
+                                    <br>
+                                    <br>
+                                    <br>/C       Carries out the command specified by string and then terminates
+                                    <br>
+                                    <br>/K       Carries out the command specified by string but remains
+                                    <br>
+                                    <br>/S       Modifies the treatment of string after /C or /K (see below)
+                                    <br>
+                                    <br>/Q       Turns echo off
+                                    <br>
+                                    <br>/D       Disable execution of AutoRun commands from registry (see below)</div>`;
+        } else if (command.toLowerCase() === "date") {
+            outputField.innerHTML = `<div>03-13-2024
+                                     <br>This command will set the system date to March 13, 2024.</div>`;                                   
+        } else if (command.toLowerCase() === "copy") {
+            outputField.innerHTML = `<div>COPY [/D] [/V] [/N] [/Y | /-Y] [/Z] [/A | /B ] source [/A | /B]
+                                    <br>      [+ source [/A | /B] [+ ...]] [destination [/A | /B]]
+                                    <br>
+                                    <br>
+                                    <br>                        source                     Specifies the file or files to be copied.
+                                    <br>
+                                    <br>                        /A                         Indicates an ASCII text file.
+                                    <br>
+                                    <br>                        /B                         Indicates a binary file.
+                                    <br>
+                                    <br>                        /D                         Allow the destination file to be created decrypted
+                                    <br>
+                                    <br>                        destination                Specifies the directory and/or filename for the new file(s).
+                                    <br>
+                                    <br>                        /V                         Verifies that new files are written correctly.</div>`;
+        } else if (command.toLowerCase() === "echo") {
+            outputField.innerHTML = `>Hello, World!`;
+        } else if (command.toLowerCase() === "if") {
+            outputField.innerHTML = `<div>echo Command executed successfully
+                                    <br>    ) else (
+                                    <br>       echo An error occurred
+                                    <br>    )</div>`;
+        } else if (command.toLowerCase() === "mkdir") {
+            outputField.innerHTML = `>mkdir new_directory`;
+        } else if (command.toLowerCase() === "move") {
+            outputField.innerHTML = `>move file.txt C:\destination`;
+        } else if (command.toLowerCase() === "ping") {
+            outputField.innerHTML = `www.example.com`;
+        } else if (command.toLowerCase() === "print") {
+            outputField.innerHTML = `C:\Files\document.txt`;
+        } else if (command.toLowerCase() === "rmdir") {
+            outputField.innerHTML = `C:\Temp`;
+        } else if (command.toLowerCase() === "recover") {
+            outputField.innerHTML = `D:`;
+        } else if (command.toLowerCase() === "ren") {
+            outputField.innerHTML = `oldfile.txt newfile.txt`;
+        } else if (command.toLowerCase() === "replace") {
+            outputField.innerHTML = `C:\Files\file1.txt D:\Backup\file1.txt`;
+        } else if (command.toLowerCase() === "restore") {
+            outputField.innerHTML = `D:\Backup\file1.txt C:\Files\file1.txt`;
+        } else if (command.toLowerCase() === "scandisk") {
+            outputField.innerHTML = `<div>SCANDISK [drive:][path]filename [/p] [/surface]
+                <br>
+                <br>                        drive:                      Specifies the drive to check.
+                <br>                        filename                    Specifies the file to check.
+                <br>                        /p                          Checks the drive and displays a report, but does not fix any errors.
+                <br>                       /surface                    Checks the entire surface of the disk for bad sectors. </div>`;
+        } else if (command.toLowerCase() === "select") {
+            outputField.innerHTML = `<div>SELECT [/S:drive] [/D:drive] [pathname...]
+                <br>
+                <br>                    /S:drive    Searches the specified drive for files to select. 
+                <br>                    /D:drive    Clears the selection on the specified drive. 
+                <br>                    pathname    Specifies the file or directory to select.</div>`;
+        } else if (command.toLowerCase() === "set") {
+            outputField.innerHTML = `<div>SET [variable=[string]]
+                <br>
+                <br>                    variable    Specifies the environment-variable name.
+                <br>                    string      Specifies a series of characters to assign to the variable.</div>`;
+        } else if (command.toLowerCase() === "setver") {
+            outputField.innerHTML = `myprog.exe 6.22`;
+        } else if (command.toLowerCase() === "time") {
+            outputField.innerHTML = `<div>time 12:00:00
+                <br>
+                <br>        This command will set the system time to 12:00:00.</div>`;
+        } else if (command.toLowerCase() === "title") {
+            outputField.innerHTML = `title My Command Prompt`;
+        } else if (command.toLowerCase() === "tree") {
+            outputField.innerHTML = `C:\Windows`;
+        } else if (command.toLowerCase() === "xcopy") {
+            outputField.innerHTML = `C:\Source\*.* D:\Destination /s /e`;                           
+        } else {
+            outputField.innerHTML += `<div>'${command}' is not recognized as an internal or external command,</div>`;
+        }
+    }
+    document.getElementById('floating-message-icon').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    window.location.href = "supp.html";
+});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOS Commands</title>
+    <link rel="icon" type="image/png" href="pics/iconpic.png">
+    <link rel="stylesheet" href="dos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+</style>
+</head>
+
+<a href="javascript:history.back()" id="floating-home-icon" class="floating-icon">
+    <span class="material-icons-outlined">home</span>
+    <span class="text">Main Page</span>
+</a>
+<body>
+    <div class="container">
+    <h1>DOS Commands</h1>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">APPEND</h2>
+        <div class="details">
+        <p>Displays or sets the search path for data files. DOS will search the specified path(s) if the file is not found in the current path.</p>
+        <pre>
+example
+
+echo Entry added on March 13, 2024. >> log.txt
+
+"echo" is a command that prints its argument to the standard output, which, by default, is the command line window.
+">>" is the append redirection operator. It redirects the output of the command on its left (the echo command in this case) to the file on its right. Crucially, if the file already exists, >> ensures that the new data is added at the end of the existing file, rather than overwriting it.
+"log.txt" is the target file to which the output from echo is being app
+            
+        </pre>
+    </div>
+    </div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">ASSOC</h2>
+        <div class="details">
+        <p>Displays or modifies file name extension associations.</p>
+        <pre>
+example
+
+>assoc .txt
+
+This command might return something like:
+
+>.txt=txtfile
+
+
+This output means that files with the .txt extension are associated with the "txtfile" file type, which is typically handled by a text editor like Notepad in Windows.
+
+
+
+>assoc/?
+
+output:
+
+ASSOC [.ext[=[fileType]]]
+
+  .ext                        Specifies the file extension to associate the file type with.
+  fileType                    Specifies the file type to associate with the file extension.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">ATTRIB</h2>
+        <div class="details">
+        <p>Sets or displays the read-only, archive, system, and hidden attributes of a file or directory.</p>
+        <pre>
+example
+
+If you want to make example.txt read-only to prevent modifications, you would use:
+
+>attrib +R example.txt
+
+
+This command adds the Read-only attribute to the file. To remove the Read-only attribute later, you would use:
+
+>attrib -R example.txt
+
+
+>attrib/?
+
+output:
+
+ATTRIB [+R | -R] [+A | -A] [+S | -S] [+H | -H] [+I | -I]
+       [drive:][path][filename] [/S [/D] [/L]]
+
++                             Sets an attribute.
+
+-                             Clears an attribute.
+
+R                             Read-only file attribute.
+
+A                             Archive file attribute.
+
+S                             System file attribute.
+
+H                             Hidden file attribute.
+
+I                             Not content indexed file attribute.
+                              [drive:][path][filename]
+                              Specifies a file or files for attrib to process.
+
+/S                            Processes matching files in the current folder
+                              and all subfolders.
+
+/D                            Processes folders as well.
+
+/L                            Work on the attributes of the Symbolic Link versus
+                              the target of the Symbolic Link
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">BREAK</h2>
+        <div class="details">
+        <p>Used from the DOS prompt or in a batch file or in the CONFIG.SYS file to set (or display) whether or not DOS should check for a Ctrl + Break key combination.
+        </p>
+        <pre>
+example
+
+inside of example.bat:
+
+@echo off
+break off
+:start
+echo This is a simple example script.
+timeout /t 1 >nul
+goto start
+
+
+*run the script example.bat on cmd
+
+To enable interruption:
+
+> break on
+
+
+To disable interruption:
+
+> break off
+
+
+By default, the BREAK status is usually ON, allowing the user to interrupt batch scripts using CTRL+C.
+When BREAK is turned OFF, the CTRL+C interruption is disabled, and the script continues running without being interrupted.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">CALL</h2>
+        <div class="details">
+        <p>Starts a batch file from within another batch file and returns when that one ends.</p>
+        <pre>
+example
+
+Let's say you have two batch scripts:
+
+first_script.bat: This script will call the second script and then display a message.
+            
+second_script.bat: This script will simply display a message.
+
+
+inside first_script.bat:
+
+@echo off
+echo This is the first script.
+echo Now, calling the second script...
+call second_script.bat
+echo Back to the first script.
+pause
+
+
+inside second_script.bat:
+
+@echo off
+echo This is the second script.
+
+*save it on same directory and run the first_script.bat
+
+output:
+
+> This is the first script.
+Now, calling the second script...
+This is the second script.
+Back to the first script.
+Press any key to continue . . .
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">CD and CHDIR</h2>
+        <div class="details">
+        <p>The CHDIR (or the alternative name CD) command either displays or changes the current working directory.</p>
+        <pre>
+example
+
+>cd C:\Programs\Python
+
+cd is the command used to change directories.
+C:\Programs\Python is the path to the directory you want to navigate to.
+When you execute this command, the current working directory changes to C:\Programs\Python.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">CHCP</h2>
+        <div class="details">
+        <p>Displays the current code page or changes the code page that DOS will use.</p>
+        <pre>
+example
+
+>CHCP
+
+
+>Active code page: 437
+
+When you run CHCP without any arguments, it displays the current active code page. In the example above, the output Active code page: 437 indicates that the current active code page is 437.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">CHKDSK</h2>
+        <div class="details">
+        <p>Checks a disk and provides a file and memory status report.</p>
+        <pre>
+example
+
+>chkdsk C:
+
+The chkdsk command is used in Windows to check the file system and file system metadata of a disk volume for errors, and to fix any issues found.
+
+
+>chkdsk/?
+
+CHKDSK [volume[[path]filename]] [/F] [/V] [/R] [/X] [/I] [/C] [/L[:size]] [/B] [/scan] [/spotfix]
+
+  volume                      Specifies the drive letter (followed by a colon),
+                              mount point, or volume name.
+
+  filename                    FAT/FAT32 only: Specifies the files to check for fragmentation.
+
+  /F                          Fixes errors on the disk.
+
+  /V                          On FAT/FAT32: Displays the full path and name of every file
+                              on the disk.
+                              On NTFS: Displays cleanup messages if any.
+
+  /R                          Locates bad sectors and recovers readable information
+                              (implies /F).
+
+  /L:size                     NTFS only: Changes the log file size to the specified number
+                              of kilobytes. If size is not specified, displays current
+                              size.
+
+  /X                          Forces the volume to dismount first if necessary.
+                              All opened handles to the volume would then be invalid
+                              (implies /F).
+
+  /I                          NTFS only: Performs a less vigorous check of index entries.
+
+  /C                          NTFS only: Skips checking of cycles within the folder
+                              structure.
+
+  /B                          NTFS only: Re-evaluates bad clusters on the volume
+                              (implies /R)
+
+  /scan                       NTFS only: Runs an online scan on the volume
+
+  /forceofflinefix            NTFS only: (Must be used with "/scan")
+                              Bypass all online repair; all defects found
+                              are queued for offline repair (i.e., "chkdsk /spotfix").
+
+  /perf                       NTFS only: (Must be used with "/scan")
+                              Uses more system resources to complete a scan as fast as
+                              possible. This may have a negative performance impact on
+                              other tasks running on the system.
+
+  /spotfix                    NTFS only: Runs spot fixing on the volume
+
+  /sdcleanup                  NTFS only: Garbage collect unneeded security descriptor
+                              data (implies /F).
+
+The /I or /C switch reduces the amount of time required to run CHKDSK by
+skipping certain checks of the volume.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">CHKNTFS</h2>
+        <div class="details">
+        <p>The chkntfs command displays or modifies the checking of the disk drive using NTFS at boot time.</p>
+        <pre>
+example
+
+>chkntfs C:
+
+This specifies the drive letter (in this case, drive C) for which you want to check the disk during boot.
+
+
+>chkntfs/?
+
+CHKNTFS volume [...]
+CHKNTFS /D
+CHKNTFS /T[:time]
+CHKNTFS /X volume [...]
+CHKNTFS /C volume [...]
+
+volume        Specifies the drive letter (followed by a colon), mount point, or volume name.
+
+/D            Restores the machine to the default behavior; all drives are checked at boot time and are not skipped.
+
+/T[:time]     Changes the Autochk.exe initiation countdown time to the value specified in seconds. If time is not specified, displays the current setting.
+
+/X            Excludes a drive from the default boot-time check. Excluded drives are not accumulated between command invocations.
+
+/C            Schedules a drive to be checked at boot time; chkdsk will run if the drive is dirty.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">CLS</h2>
+        <div class="details">
+        <p>The CLS or CLRSCR command clears the terminal screen.</p>
+        <pre>
+example
+
+>CLS
+
+It clears the screen by removing all text and resetting the command prompt to the top of the window.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">CMD</h2>
+        <div class="details">
+        <p>Start a new instance of the command interpreter..</p>
+        <pre>
+example
+
+>echo Hello, World!
+
+
+echo: This is a command used to display text on the command prompt.
+Hello, World!: This is the text that will be displayed on the command prompt.
+
+
+
+>cmd/?
+
+Starts a new instance of the Windows command interpreter
+
+CMD [/A | /U] [/Q] [/D] [/E:ON | /E:OFF] [/F:ON | /F:OFF] [/V:ON | /V:OFF]
+    [[/S] [/C | /K] string]
+
+
+/C                            Carries out the command specified by string and then terminates
+
+/K                            Carries out the command specified by string but remains
+
+/S                            Modifies the treatment of string after /C or /K (see below)
+
+/Q                            Turns echo off
+
+/D                            Disable execution of AutoRun commands from registry (see below)
+
+/A                            Causes the output of internal commands to a pipe or file to be ANSI
+
+/U                            Causes the output of internal commands to a pipe or file to be
+                              Unicode
+
+/T:fg                         Sets the foreground/background colors (see COLOR /? for more info)
+
+/E:ON                         Enable command extensions (see below)
+
+/E:OFF                        Disable command extensions (see below)
+
+/F:ON                         Enable file and directory name completion characters (see below)
+
+/F:OFF                        Disable file and directory name completion characters (see below)
+
+/V:ON                         Enable delayed environment variable expansion using ! as the
+                              delimiter. For example, /V:ON would allow !var! to expand the
+                              variable var at execution time.  The var syntax expands variables
+                              at input time, which is quite a different thing when inside of a FOR
+                              loop.
+
+/V:OFF                        Disable delayed environment expansion.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">COMP</h2>
+        <div class="details">
+        <p>Show differences between any two files, or any two sets of files.</p>
+        <pre>
+example
+
+>COMP file1.txt file2.txt
+
+If the contents of file1.txt and file2.txt are identical, the command will display a message indicating that the files are the same.
+If there are differences between the files, COMP will display the offset and line number where the first difference occurs.
+
+
+>comp/?
+
+Compares the contents of two files or sets of files.
+
+COMP [data1] [data2] [/D] [/A] [/L] [/N=number] [/C]
+
+
+  data1                       Specifies location and name(s) of first file(s) to compare.
+
+  data2                       Specifies location and name(s) of second files(s) to compare.
+
+  /D                          Displays differences in decimal format.
+
+  /A                          Displays differences in ASCII characters.
+  
+  /L                          Displays line numbers for differences.
+
+  /N=number                   Compares only the first specified number of lines in each file.
+
+  /C                          Disregards case of ASCII letters when comparing files.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">COPY</h2>
+        <div class="details">
+        <p>Makes copies of existing files.</p>
+        <pre>
+example
+
+>copy C:\Folder1\file1.txt D:\Folder2\file2.txt
+
+the command copies file1.txt from the directory C:\Folder1 to the directory D:\Folder2, renaming it to file2.txt in the process.
+
+
+
+>copy/?
+
+Copies one or more files to another location.
+
+
+COPY [/D] [/V] [/N] [/Y | /-Y] [/Z] [/A | /B ] source [/A | /B]
+     [+ source [/A | /B] [+ ...]] [destination [/A | /B]]
+
+
+  source                     Specifies the file or files to be copied.
+
+  /A                         Indicates an ASCII text file.
+
+  /B                         Indicates a binary file.
+
+  /D                         Allow the destination file to be created decrypted
+
+  destination                Specifies the directory and/or filename for the new file(s).
+
+  /V                         Verifies that new files are written correctly.
+
+  /N                         Uses short filename, if available, when copying a file with a 
+                             non-8dot3 name.
+
+  /Y                         Suppresses prompting to confirm you want to overwrite an
+                             existing destination file.
+
+  /-Y                        Causes prompting to confirm you want to overwrite an
+                             existing destination file.
+
+  /Z                         Copies networked files in restartable mode.
+
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">DATE</h2>
+            <div class="details">
+                <p>Displays or sets the system date.</p>
+            
+                <pre>
+>date
+
+This command will display the current date in the system's format.
+
+                
+            
+example
+
+>date 03-13-2024
+
+This command will set the system date to March 13, 2024.
+
+                </pre>
+            </div>
+        </div>
+    
+    <div class="command">
+            <h2 onclick="toggleDetails(this)">DEBUG</h2>
+            <div class="details">
+                <p>DEBUG is a command-line debugging tool available in MS-DOS and Windows operating systems.</p>
+                <pre>
+        example
+        
+        To start the DEBUG command, type "debug" at the command prompt and press Enter. This will launch the DEBUG interface.
+        
+        The DEBUG interface consists of a command prompt where you can enter various commands to inspect and modify memory and files.
+        
+        Here is a simple example of using DEBUG to view the contents of a file:
+        
+        >debug example.txt
+
+        
+        This command opens the file "example.txt" in DEBUG mode, allowing you to view its contents as hexadecimal values.
+        
+        Once inside DEBUG, you can use various commands to interact with memory and files. For example, to display the contents of a specific memory location, you can use the "d" command followed by the memory address:
+        
+        >d 100
+        
+        This command displays the contents of the memory address 100 in hexadecimal format.
+        
+        DEBUG provides a range of commands for debugging and editing purposes, making it a powerful tool for low-level system analysis and troubleshooting.
+        
+                </pre>
+            </div>
+        </div>
+        
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">DEFRAG</h2>
+    <div class="details">
+        <p>DEFRAG is a command in Windows used to defragment disk volumes.</p>
+        <pre>
+example
+
+>defrag C:
+
+This command defragments the disk volume specified (in this case, drive C:). Defragmentation is the process of reorganizing the data on a disk volume to optimize the way files are stored, making the system run more efficiently.
+
+>defrag/?
+
+DEFRAG volume [/A | /F] [/V] [/?]
+
+  volume  Specifies the drive letter (followed by a colon),
+          mount point, or volume name.
+
+  /A      Analyzes the specified volume, but does not defragment it.
+
+  /F      Forces defragmentation of the volume, even if it's not needed.
+
+  /V      Displays the complete analysis and defragmentation reports.
+
+  /?      Displays help at the command prompt.
+        </pre>
+    </div>
+</div>
+    <div class="command">
+        <h2 onclick="toggleDetails(this)">DEL and ERASE</h2>
+    <div class="details">
+        <p>Deletes one or more files.</p>
+        <pre>
+example
+
+
+>del file.txt
+
+The del command is used to delete a single file named "file.txt" from the current directory.
+
+
+>del folder\*.*
+
+This command will delete all files in the "folder" directory and its subdirectories, but it will not delete the folder itself.
+
+
+>del /s folder
+
+This command will delete the "folder" directory and all its contents, including subdirectories.
+
+
+>del /p file.txt
+
+The /p option prompts you to confirm each file deletion.
+
+
+>del *.txt
+
+This command will delete all files with the .txt extension in the current directory.
+
+
+>erase file.txt
+
+The erase command is essentially the same as the del command. It is used to delete a single file named "file.txt" from the current directory.
+
+
+Both del and erase commands perform the same function of deleting files, and they can be used interchangeably. 
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">DELTREE</h2>
+    <div class="details">
+        <p>Deletes a directory and all the subdirectories and files in it.</p>
+        <pre>
+example
+
+>DELTREE C:\FolderToDelete
+
+This command will delete the directory "FolderToDelete" located on drive C: and all its contents.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">DIR</h2>
+    <div class="details">
+        <p>Displays a list of files and subdirectories in a directory.</p>
+        <pre>
+example
+
+>DIR C:\Windows\System32
+
+This command will list all files and subdirectories in the "System32" directory located on drive C: under the "Windows" directory.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">DISKCOMP</h2>
+    <div class="details">
+        <p>Compares the contents of two floppy disks or hard disks.</p>
+        <pre>
+example
+
+>DISKCOMP A: B:
+
+This command will compare the contents of the floppy disks inserted in drives A: and B:.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">DISKCOPY</h2>
+    <div class="details">
+        <p>Copies the entire contents of one floppy disk to another.</p>
+        <pre>
+example
+
+>DISKCOPY A: B:
+
+This command will copy the entire contents of the floppy disk inserted in drive A: to another floppy disk inserted in drive B:.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">DOSKEY</h2>
+    <div class="details">
+        <p>Enables users to recall, edit, and create command lines, as well as to create macros.</p>
+        <pre>
+example
+
+>DOSKEY /HISTORY
+
+This command will display the command history stored in DOSKEY, showing the previously executed commands.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">DRVSPACE</h2>
+    <div class="details">
+        <p>Mounts, compresses, and manages DriveSpace compressed drives.</p>
+        <pre>
+example
+
+>DRVSPACE /MOUNT C
+
+This command will mount the compressed drive C created using DriveSpace.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">ECHO</h2>
+    <div class="details">
+        <p>Displays messages, or turns command echoing on or off.</p>
+        <pre>
+example
+
+>ECHO Hello, World!
+
+This command will display "Hello, World!" in the command prompt.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">EDIT</h2>
+    <div class="details">
+        <p>Starts the MS-DOS Editor, a text editor used to create and modify text files.</p>
+        <pre>
+example
+
+>EDIT example.txt
+
+This command will open the MS-DOS Editor with the file "example.txt" for editing.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">EDLIN</h2>
+    <div class="details">
+        <p>Starts the Edlin line-based text editor, used to create and modify text files.</p>
+        <pre>
+example
+
+>EDLIN example.txt
+
+This command will open the Edlin text editor with the file "example.txt" for editing.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">EXE2BIN</h2>
+    <div class="details">
+        <p>Converts an .EXE (executable) file into a binary format file.</p>
+        <pre>
+example
+
+>EXE2BIN program.exe program.bin
+
+This command will convert the executable file "program.exe" into a binary file "program.bin".
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">EXIT</h2>
+    <div class="details">
+        <p>Terminates the command interpreter.</p>
+        <pre>
+example
+
+>exit
+
+This command will terminate the command prompt window.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">EXPAND</h2>
+    <div class="details">
+        <p>Expands one or more compressed files.</p>
+        <pre>
+example
+
+>expand file1.ex_ file1.exe
+
+This command will expand the compressed file file1.ex_ into file1.exe.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">FASTHELP</h2>
+    <div class="details">
+        <p>Provides quick access to help documentation.</p>
+        <pre>
+example
+
+>fasthelp
+
+This command will display a brief overview of available commands and options.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">FASTOPEN</h2>
+    <div class="details">
+        <p>Enables faster access to frequently used files and directories.</p>
+        <pre>
+example
+
+>fastopen
+
+This command will display the current list of files and directories that have been added to the fastopen table.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">FC</h2>
+    <div class="details">
+        <p>Compares two files or sets of files and displays the differences between them.</p>
+        <pre>
+example
+
+>fc file1.txt file2.txt
+
+This command will compare file1.txt and file2.txt and display the differences between them.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">FDISK</h2>
+    <div class="details">
+        <p>Manages disk partitions on a hard drive.</p>
+        <pre>
+example
+
+>fdisk
+
+This command will start the FDISK utility, allowing you to create, delete, and manage disk partitions.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">FIND</h2>
+    <div class="details">
+        <p>Searches for a specified text string in one or more files.</p>
+        <pre>
+example
+
+>find "keyword" file.txt
+
+This command will search for the specified keyword in the file.txt and display the lines where it is found.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">FINDSTR</h2>
+    <div class="details">
+        <p>Searches for strings in files using regular expressions.</p>
+        <pre>
+example
+
+>findstr /i "pattern" file.txt
+
+This command will search for the specified pattern in the file.txt, ignoring case, and display the lines where it is found.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">FOR</h2>
+    <div class="details">
+        <p>Runs a specified command for each file in a set of files.</p>
+        <pre>
+example
+
+>for %i in (*.txt) do echo %i
+
+This command will echo the name of each .txt file in the current directory.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">FORMAT</h2>
+    <div class="details">
+        <p>Formats a disk for use with Windows.</p>
+        <pre>
+example
+
+>format C:
+
+This command will format the C: drive, removing all data and preparing it for use with Windows.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">GOTO</h2>
+    <div class="details">
+        <p>Directs the command interpreter to a labeled line in a batch script.</p>
+        <pre>
+example
+
+>goto label
+
+This command will transfer control to the line labeled "label" in the current batch script.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">GRAPHICS</h2>
+    <div class="details">
+        <p>Loads a program that provides graphics capabilities.</p>
+        <pre>
+example
+
+>graphics
+
+This command will load a graphics program, enabling graphical interface capabilities.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">HELP</h2>
+    <div class="details">
+        <p>Provides information about Windows commands and their usage.</p>
+        <pre>
+example
+
+>help
+
+This command will display a list of available commands and brief descriptions of their functions.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">IF</h2>
+    <div class="details">
+        <p>Performs conditional processing in batch files.</p>
+        <pre>
+example
+
+>if %errorlevel% == 0 (
+    echo Command executed successfully
+) else (
+    echo An error occurred
+)
+
+This command will check the error level and display different messages based on its value.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">INTERSVR</h2>
+    <div class="details">
+        <p>Starts the Interix server, which provides UNIX-like functionality on Windows.</p>
+        <pre>
+example
+
+>intersvr
+
+This command will start the Interix server, enabling UNIX-like functionality on the Windows operating system.
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">INTERLNK</h2>
+    <div class="details">
+        <p>Establishes a connection with another computer using a parallel or serial cable.</p>
+        <pre>
+example
+
+>interlnk /M
+
+This command enables the INTERLNK server, allowing connection using a serial cable (/M parameter).
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">KEYB</h2>
+    <div class="details">
+        <p>Changes the keyboard layout.</p>
+        <pre>
+example
+
+>keyb uk
+
+This command changes the keyboard layout to the United Kingdom layout (uk parameter).
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">LABEL</h2>
+    <div class="details">
+        <p>Assigns a label to a disk.</p>
+        <pre>
+example
+
+>label D: MyDisk
+
+This command assigns the label "MyDisk" to the disk drive D:.
+        </pre>
+    </div>
+</div>
+
+<!-- Add more commands in a similar format -->
+
+<!-- LOADFIX -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">LOADFIX</h2>
+    <div class="details">
+        <p>Loads a program above the first 64K of memory.</p>
+        <pre>
+example
+
+>loadfix program.exe
+
+This command loads the program "program.exe" into memory above the first 64K.
+        </pre>
+    </div>
+</div>
+
+<!-- LOADHIGH -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">LOADHIGH</h2>
+    <div class="details">
+        <p>Loads a program into upper memory.</p>
+        <pre>
+example
+
+>loadhigh program.exe
+
+This command loads the program "program.exe" into upper memory.
+        </pre>
+    </div>
+</div>
+
+<!-- MKDIR -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MKDIR</h2>
+    <div class="details">
+        <p>Creates a new directory.</p>
+        <pre>
+example
+
+>mkdir new_directory
+
+This command creates a new directory named "new_directory".
+        </pre>
+    </div>
+</div>
+
+<!-- MEM -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MEM</h2>
+    <div class="details">
+        <p>Displays memory usage.</p>
+        <pre>
+example
+
+>mem
+
+This command displays memory usage information.
+        </pre>
+    </div>
+</div>
+
+<!-- MEMMAKER -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MEMMAKER</h2>
+    <div class="details">
+        <p>Optimizes conventional memory usage.</p>
+        <pre>
+example
+
+>memmaker
+
+This command launches the MemMaker utility to optimize conventional memory usage.
+        </pre>
+    </div>
+</div>
+
+<!-- MODE -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MODE</h2>
+    <div class="details">
+        <p>Configures system devices and switches.</p>
+        <pre>
+example
+
+>mode COM1:9600,n,8,1
+
+This command sets the configuration for COM1 serial port to 9600 baud rate, no parity, 8 data bits, and 1 stop bit.
+        </pre>
+    </div>
+</div>
+
+<!-- MORE -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MORE</h2>
+    <div class="details">
+        <p>Displays output one screen at a time.</p>
+        <pre>
+example
+
+>more textfile.txt
+
+This command displays the contents of "textfile.txt" one screen at a time.
+        </pre>
+    </div>
+</div>
+
+<!-- MOVE -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MOVE</h2>
+    <div class="details">
+        <p>Moves one or more files from one directory to another.</p>
+        <pre>
+example
+
+>move file.txt C:\destination
+
+This command moves the file "file.txt" to the directory "C:\destination".
+        </pre>
+    </div>
+</div>
+
+<!-- MSAV -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MSAV</h2>
+    <div class="details">
+        <p>Starts the Microsoft Antivirus application.</p>
+        <pre>
+example
+
+>msav
+
+This command starts the Microsoft Antivirus application.
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MSCDEX</h2>
+    <div class="details">
+        <p>Installs the Microsoft CD-ROM Extensions.</p>
+        <pre>
+example
+
+>mscdex /D:MSCD001 /L:D
+
+This command installs MSCDEX and assigns the drive letter D: to the CD-ROM drive.
+        </pre>
+    </div>
+</div>
+
+<!-- MSD -->
+<div class="command">
+    <h2 onclick="toggleDetails(this)">MSD</h2>
+    <div class="details">
+        <p>Starts the Microsoft Diagnostics utility.</p>
+        <pre>
+example
+
+>msd
+
+This command starts the Microsoft Diagnostics utility.
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">PATH</h2>
+    <div class="details">
+        <p>Displays or sets the command search path.</p>
+        <pre>
+example
+
+>path
+
+This command will display the current command search path.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">PAUSE</h2>
+    <div class="details">
+        <p>Pauses the processing of a batch file and displays the message "Press any key to continue..."</p>
+        <pre>
+example
+
+>pause
+
+This command will pause the batch file execution and display the message "Press any key to continue...".
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">PING</h2>
+    <div class="details">
+        <p>Tests the network connectivity with another host using ICMP Echo Request messages.</p>
+        <pre>
+example
+
+>ping www.example.com
+
+This command will send ICMP Echo Request messages to www.example.com and display the round-trip time if successful.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">PRINT</h2>
+    <div class="details">
+        <p>Prints a text file to a specified printer.</p>
+        <pre>
+example
+
+>print C:\Files\document.txt
+
+This command will print the document.txt file to the default printer.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">PROMPT</h2>
+    <div class="details">
+        <p>Changes the command prompt text.</p>
+        <pre>
+example
+
+>prompt $P$G
+
+This command will change the command prompt to display the current drive and directory followed by a greater than sign (>). 
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">QBASIC</h2>
+    <div class="details">
+        <p>Starts the QBasic programming environment.</p>
+        <pre>
+example
+
+>qbasic
+
+This command will launch the QBasic programming environment.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">RMDIR</h2>
+    <div class="details">
+        <p>Removes a directory.</p>
+        <pre>
+example
+
+>rmdir C:\Temp
+
+This command will remove the Temp directory located in the C drive.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">RECOVER</h2>
+    <div class="details">
+        <p>Recovers readable information from a damaged disk.</p>
+        <pre>
+example
+
+>recover D:
+
+This command will attempt to recover readable information from the D drive.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">REM</h2>
+    <div class="details">
+        <p>Records comments (remarks) in a batch file or CONFIG.SYS.</p>
+        <pre>
+example
+
+>rem This is a comment
+
+This command will add a comment in a batch file or CONFIG.SYS, which will be ignored during execution.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">REN</h2>
+    <div class="details">
+        <p>Renames a file or directory.</p>
+        <pre>
+example
+
+>ren oldfile.txt newfile.txt
+
+This command will rename the oldfile.txt to newfile.txt.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">REPLACE</h2>
+    <div class="details">
+        <p>Replaces files.</p>
+        <pre>
+example
+
+>replace C:\Files\file1.txt D:\Backup\file1.txt
+
+This command will replace the file1.txt in the Backup directory with the file1.txt from the Files directory.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">RESTORE</h2>
+    <div class="details">
+        <p>Restores files that were backed up using the BACKUP command.</p>
+        <pre>
+example
+
+>restore D:\Backup\file1.txt C:\Files\file1.txt
+
+This command will restore the file1.txt from the Backup directory to the Files directory.
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SCANDISK</h2>
+    <div class="details">
+        <p>Checks a disk and provides a file and memory status report.</p>
+        <pre>
+example
+
+>scandisk C:
+
+The scandisk command is used in Windows to check the file system and file system metadata of a disk volume for errors, and to fix any issues found.
+
+
+>scandisk/?
+
+SCANDISK [drive:][path]filename [/p] [/surface]
+
+  drive:                      Specifies the drive to check.
+  filename                    Specifies the file to check.
+  /p                          Checks the drive and displays a report, but does not fix any errors.
+  /surface                    Checks the entire surface of the disk for bad sectors. 
+
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SELECT</h2>
+    <div class="details">
+        <p>Selects or unselects one or more files.</p>
+        <pre>
+example
+
+>select *.txt
+
+The select command is used in Windows to choose one or more files for further manipulation in a batch script or command line environment.
+
+
+>select/?
+
+SELECT [/S:drive] [/D:drive] [pathname...]
+
+  /S:drive    Searches the specified drive for files to select. 
+  /D:drive    Clears the selection on the specified drive. 
+  pathname    Specifies the file or directory to select.
+
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SET</h2>
+    <div class="details">
+        <p>Sets or displays environment variables.</p>
+        <pre>
+example
+
+>set PATH=C:\Program Files;%PATH%
+
+The set command is used in Windows to set or display environment variables. In this example, it adds "C:\Program Files" to the PATH environment variable.
+
+
+>set/?
+
+SET [variable=[string]]
+
+  variable    Specifies the environment-variable name.
+  string      Specifies a series of characters to assign to the variable.
+
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SETUP</h2>
+    <div class="details">
+        <p>Launches the Windows Setup program to install or configure Windows.</p>
+        <pre>
+example
+
+>setup
+
+This command will launch the Windows Setup program, allowing you to install or configure Windows.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SETVER</h2>
+    <div class="details">
+        <p>Sets the version number that MS-DOS reports to a program.</p>
+        <pre>
+example
+
+>setver myprog.exe 6.22
+
+This command will set the version number reported to the program "myprog.exe" to 6.22.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SHARE</h2>
+    <div class="details">
+        <p>Installs support for file sharing and locking capabilities.</p>
+        <pre>
+example
+
+>share
+
+This command will install support for file sharing and locking capabilities.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SHIFT</h2>
+    <div class="details">
+        <p>Shifts the position of replaceable parameters in batch files.</p>
+        <pre>
+example
+
+>shift
+
+This command will shift the position of replaceable parameters in a batch file.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SIZER</h2>
+    <div class="details">
+        <p>Displays information about the amount of free and used memory on a disk.</p>
+        <pre>
+example
+
+>sizer C:
+
+This command will display information about the amount of free and used memory on the disk C:.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SMARTDRV</h2>
+    <div class="details">
+        <p>Installs and configures SmartDrive, a disk caching utility.</p>
+        <pre>
+example
+
+>smartdrv /X
+
+This command will install and configure SmartDrive, with extended caching enabled.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SORT</h2>
+    <div class="details">
+        <p>Sorts the input and sends the result to the output.</p>
+        <pre>
+example
+
+>sort file.txt
+
+This command will sort the contents of the file "file.txt" and display the result.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SUBST</h2>
+    <div class="details">
+        <p>Associates a path with a drive letter.</p>
+        <pre>
+example
+
+>subst X: C:\MyFolder
+
+This command will associate the path "C:\MyFolder" with the drive letter X:.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">SYS</h2>
+    <div class="details">
+        <p>Copies system files to a disk so that it can be used to start a computer.</p>
+        <pre>
+example
+
+>sys C:
+
+This command will copy system files to the disk specified by the drive letter C:.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">TELNET</h2>
+    <div class="details">
+        <p>Connects to a remote computer using the Telnet protocol.</p>
+        <pre>
+example
+
+>telnet 192.168.1.1
+
+This command will establish a Telnet connection to the remote computer with the IP address 192.168.1.1.
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">TIME</h2>
+    <div class="details">
+        <p>Displays or sets the system time.</p>
+        <p>To display the current time:</p>
+        <pre>
+>time
+
+This command will display the current time in the system's format.
+        </pre>
+        <p>To set the system time:</p>
+        <pre>
+example
+
+time 12:00:00
+
+This command will set the system time to 12:00:00.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">TITLE</h2>
+    <div class="details">
+        <p>Sets the window title for the command prompt window.</p>
+        <pre>
+example
+
+>title My Command Prompt
+
+This command will set the title of the command prompt window to "My Command Prompt".
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">TREE</h2>
+    <div class="details">
+        <p>Displays the folder structure of a directory in a tree-like format.</p>
+        <pre>
+example
+
+>tree C:\Windows
+
+This command will display the folder structure of the C:\Windows directory.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">TRUENAME</h2>
+    <div class="details">
+        <p>Displays the true path of a specified file or folder.</p>
+        <pre>
+example
+
+>truename myfile.txt
+
+This command will display the full path of the file "myfile.txt".
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">TYPE</h2>
+    <div class="details">
+        <p>Displays the contents of a text file.</p>
+        <pre>
+example
+
+>type myfile.txt
+
+This command will display the contents of the file "myfile.txt".
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">UNDELETE</h2>
+    <div class="details">
+        <p>Restores files that were previously deleted from a disk.</p>
+        <pre>
+example
+
+>undelete myfile.txt
+
+This command will attempt to restore the file "myfile.txt" that was previously deleted from the disk.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">UNFORMAT</h2>
+    <div class="details">
+        <p>Attempts to recover data from a formatted disk.</p>
+        <pre>
+example
+
+>unformat C:
+
+This command will attempt to recover data from the formatted disk "C:".
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">VER</h2>
+    <div class="details">
+        <p>Displays the Windows version number.</p>
+        <pre>
+example
+
+>ver
+
+This command will display the version number of the Windows operating system.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">VERIFY</h2>
+    <div class="details">
+        <p>Specifies whether to verify that files are written correctly to a disk.</p>
+        <pre>
+example
+
+>verify on
+
+This command will enable the file verification feature, ensuring that files are written correctly to the disk.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">VOL</h2>
+    <div class="details">
+        <p>Displays the volume label and serial number of a disk.</p>
+        <pre>
+example
+
+>vol C:
+
+This command will display the volume label and serial number of the disk "C:".
+        </pre>
+    </div>
+</div>
+<div class="command">
+    <h2 onclick="toggleDetails(this)">VSAFE</h2>
+    <div class="details">
+        <p>Starts the McAfee VirusScan for DOS utility to protect your system from viruses.</p>
+        <pre>
+example
+
+>vsafe /s /p
+
+This command will start the McAfee VirusScan for DOS utility in silent mode (/s) and prompt (/p) for user actions if a virus is found.
+        </pre>
+    </div>
+</div>
+
+<div class="command">
+    <h2 onclick="toggleDetails(this)">XCOPY</h2>
+    <div class="details">
+        <p>Copies files and directory trees.</p>
+        <pre>
+example
+
+>xcopy C:\Source\*.* D:\Destination /s /e
+
+This command will copy all files and subdirectories from the source directory (C:\Source) to the destination directory (D:\Destination), including empty directories (/s) and subdirectories (/e).
+        </pre>
+    </div>
+</div>
+
+       <script>
+        function toggleDetails(element) {
+            const command = element.closest('.command');
+            command.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
