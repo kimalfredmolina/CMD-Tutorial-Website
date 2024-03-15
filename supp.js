@@ -5,10 +5,14 @@ const chatbox = document.querySelector(".chatbox");
 let userMessage;
 const API_KEY = "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";
 
-const createChatLi = (message, className) =>{
+let messageCount = 0;
+const maxMessages = 3;
+let timeoutReset = false;
+
+const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);
-    let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>` ;
+    let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>`;
     chatLi.innerHTML = chatContent;
     return chatLi;
 }
@@ -25,7 +29,7 @@ const generateResponse = (incomingChatLi) => {
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
-            messages: [{role: "user", content: userMessage}]
+            messages: [{ role: "user", content: userMessage }]
         })
     }
 
@@ -36,26 +40,49 @@ const generateResponse = (incomingChatLi) => {
         messageElement.textContent = "Oops! Something went wrong. Please try again.";
     }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
 }
-const handleChat =() =>{
+
+const handleChat = () => {
+    if (timeoutReset) return;
     userMessage = chatInput.value.trim();
-    if(!userMessage)return;
+    if (!userMessage) return;
     chatInput.value = "";
-    
+
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
 
+    messageCount++;
+
+    if (messageCount >= maxMessages) {
+        disableInput();
+    }
+
     setTimeout(() => {
-        const incomingChatLi = createChatLi("Thinking...","incoming")
+        const incomingChatLi = createChatLi("Thinking...", "incoming")
         chatbox.appendChild(incomingChatLi);
         chatbox.scrollTo(0, chatbox.scrollHeight);
         generateResponse(incomingChatLi);
     }, 600);
 }
-chatInput.addEventListener('keydown', function(event) {
+
+const disableInput = () => {
+    chatInput.disabled = true;
+    sendChatBtn.disabled = true;
+    timeoutReset = true;
+
+    setTimeout(() => {
+        chatInput.disabled = false;
+        sendChatBtn.disabled = false;
+        messageCount = 0;
+        timeoutReset = false;
+    }, 12 * 60 * 60 * 1000); 
+}
+
+chatInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' && !event.repeat) {
-        event.preventDefault(); 
+        event.preventDefault();
         handleChat();
     }
 });
 
 sendChatBtn.addEventListener("click", handleChat);
+
