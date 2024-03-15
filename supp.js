@@ -3,7 +3,7 @@ const sendChatBtn = document.querySelector(".chat-input span");
 const chatbox = document.querySelector(".chatbox");
 
 let userMessage;
-const API_KEY = "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";
+const API_KEY = "hehehe"; // to generate CHAT GPT use your own API Key on OpenAi
 
 let messageCount = 0;
 const maxMessages = 3;
