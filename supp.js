@@ -3,7 +3,7 @@ const sendChatBtn = document.querySelector(".chat-input span");
 const chatbox = document.querySelector(".chatbox");
 
 let userMessage;
-const API_KEY = "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";
+const API_KEY = "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";
 
 let messageCount = 0;
 const maxMessages = 3;
