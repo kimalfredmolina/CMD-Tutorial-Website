@@ -173,3 +173,34 @@ header h2 {
     background-color: #4b2ca7;
     text-decoration: rgb(255, 0, 0) 
 }
+@media (max-width: 480px) {
+  header {
+    font-size: 1rem;
+    padding: 15px 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    position: relative;
+  }
+
+  .back-button {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+  }
+
+  header h2 {
+    padding: 0 50px;
+  }
+
+  .chatbot .chatbox .chat p {
+    margin: 0 10px;
+  }
+
+  .chatbot {
+    width: calc(100% - 20px);
+    margin: 0 10px;
+  }
+}
