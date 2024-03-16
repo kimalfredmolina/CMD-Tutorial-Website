@@ -27,6 +27,6 @@ Here's a simple example demonstrating how to use the OpenAI API with JavaScript:
 
 // Set up your OpenAI API key
 let userMessage;
-const API_KEY = 'YOUR_API_KEY_HERE';
+const API_KEY = 'YOUR_API_KEY_HERE'; //your own api key
 
 // Your code to interact with the OpenAI API 
