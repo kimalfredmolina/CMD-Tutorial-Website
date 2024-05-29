@@ -32,3 +32,9 @@ let userMessage;
 const API_KEY = 'YOUR_API_KEY_HERE'; //your own api key
 
 // Your code to interact with the OpenAI API 
+```
+
+## Contributors
+
+- [Jeremiah James Curias](https://www.facebook.com/JJCurias)
+- [Angelo Dela Cruz](https://www.facebook.com/AngeloDelaCruz321)
